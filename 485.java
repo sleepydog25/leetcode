@@ -4,8 +4,10 @@
 
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
-        List <String> newarr = new ArrayList <>();
 
+        //write the int array to an String ArrayList
+
+        List <String> newarr = new ArrayList <>();
         for (int e:nums){
             newarr.add(Integer.toString(e));
         }
@@ -17,6 +19,8 @@ class Solution {
             System.out.print(f);
         }
         */
+
+        //concat the item in newarr
         String buffer =newarr.stream().collect(Collectors.joining(""));
 
         int count = 0;
