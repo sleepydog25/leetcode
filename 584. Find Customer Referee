@@ -1,0 +1,3 @@
+# Write your MySQL query statement below
+-- https://leetcode.com/problems/find-customer-referee/submissions/1353416108/?envType=study-plan-v2&envId=top-sql-50
+select name from customer where referee_id != 2 or referee_id is null;
