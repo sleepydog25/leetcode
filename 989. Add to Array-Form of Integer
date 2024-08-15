@@ -1,0 +1,50 @@
+// https://leetcode.com/problems/add-to-array-form-of-integer/description/
+
+class Solution {
+    public List<Integer> addToArrayForm(int[] num, int k) {
+        // converting k to digits
+        int[] kDigits = Integer.toString(k).chars().map(c -> c - '0').toArray();
+
+        // lengths
+        int numLength = num.length;
+        int kLength = kDigits.length;
+
+        // Adjust lengths by adding zeros to the shorter array
+        if (numLength > kLength) {
+            // Prepend zeros to kDigits
+            int[] adjustedKDigits = new int[numLength];
+            int zeros = numLength - kLength;
+            System.arraycopy(kDigits, 0, adjustedKDigits, zeros, kLength);
+            kDigits = adjustedKDigits;
+        } else {
+            int[] adjustedNum = new int[kLength];
+            int zeros = kLength - numLength;
+            System.arraycopy(num, 0, adjustedNum, zeros, numLength);
+            num = adjustedNum;
+        }
+
+        // carry handling
+        List<Integer> result = new ArrayList<>();
+        int carry = 0;
+        for (int i = num.length - 1; i >= 0; i--) {
+            int sum = num[i] + kDigits[i] + carry;
+            carry = sum / 10;  
+            result.add(sum % 10);  // Store the current digit
+        }
+        
+        
+        if (carry > 0) {
+            result.add(carry);
+        }
+
+        // reverse it
+        List<Integer> finalResult = new ArrayList<>();
+        for (int i = result.size() - 1; i >= 0; i--) {
+            finalResult.add(result.get(i));
+        }
+
+        return finalResult;
+        }
+
+
+}
